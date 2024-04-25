@@ -1,7 +1,7 @@
 "use client";
-import { useState } from 'react';
 import Header from '@/app/components/Header';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Home = () => {
   const [partNumber, setPartNumber] = useState('');
@@ -56,11 +56,11 @@ const Home = () => {
               value={partNumber}
               onChange={handleInputChange}
               onKeyPress={handleKeyPress}
-              className="px-4 py-2 w-64 focus:outline-none"
+              className="px-4 py-2 w-64 focus:outline-none rounded-l-lg"
             />
             <button
               type="submit"
-              className="bg-red-600 text-white px-4 py-2 hover:bg-red-700 focus:outline-none"
+              className="bg-red-600 text-white px-4 py-2 hover:bg-red-700 focus:outline-none rounded-r-lg"
             >
               検索
             </button>
@@ -68,7 +68,7 @@ const Home = () => {
         </div>
         {showWarning && (
           <div className="text-red-500 text-center mt-4">
-            品番は英語か数字で10桁で入力してください。
+            品番は半角数字10桁で入力してください。
           </div>
         )}
         {partInfo && (
