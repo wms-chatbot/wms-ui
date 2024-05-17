@@ -1,5 +1,7 @@
 "use client";
 import Header from '@/app/components/Header';
+import LocationTable from '@/app/components/LocationTable';
+import OrderTable from '@/app/components/OrderTable';
 import { useState } from 'react';
 
 // Homeコンポーネントの定義
@@ -62,31 +64,31 @@ const Home = () => {
   const renderPartInfo = (info) => {
     if (!info) return null;
     if (info.error) return <div className="text-red-500 text-center mt-4">{info.error}</div>;
-
     return (
       <>
-      <table className='table-fixed mx-auto mt-5 w-3/4 text-white'>
-        <thead>
-          <tr>
-            <th className="w-1/2">部品名</th>
-            <th className="w-1/2">{info.Part.Name}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="w-1/2">最小発注</td>
-            <td className="w-1/2">{info.Part.Moq}</td>
-          </tr>
-          <tr>
-            <td className="w-1/2">原価単価</td>
-            <td className="w-1/2">{info.Part.CostUnitPrice}</td>
-          </tr>
-          <tr>
-            <td className="w-1/2">契約単価</td>
-            <td className="w-1/2">{info.Part.CostUnitPrice}</td>
-          </tr>
-        </tbody>
-      </table>
+      <table className='table-auto mx-auto mt-5 text-white border border-separate border-tools-table-outline md:text-lg text-sm text-center rounded'>
+          <tbody>
+            <tr>
+              <td className="md:w-1/4 border border-gray-300 p-2">部品名</td>
+              <td className="md:w-3/4 border border-gray-300 p-2">{info.Part.Name}</td>
+            </tr>
+            <tr>
+              <td className="md:w-1/4 border border-gray-300 p-2">最小発注</td>
+              <td className="md:w-3/4 border border-gray-300 p-2">{info.Part.Moq}</td>
+            </tr>
+            <tr>
+              <td className="md:w-1/4 border border-gray-300 p-2">原価単価</td>
+              <td className="md:w-3/4 border border-gray-300 p-2">{info.Part.CostUnitPrice}</td>
+            </tr>
+            <tr>
+              <td className="md:w-1/4 border border-gray-300 p-2">契約単価</td>
+              <td className="md:w-3/4 border border-gray-300 p-2">{info.Part.CostUnitPrice}</td>
+            </tr>
+          </tbody>
+        </table>
+      <LocationTable partLocations={info.PartLocations} locations={info.Locations}/>
+      <OrderTable orders={info.Orders}/>
+
       </>
     );
   };

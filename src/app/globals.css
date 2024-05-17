@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.keiko {
+    color:rgb(233, 255, 0);
+}
