@@ -61,7 +61,7 @@ const Home = () => {
   // 部品情報を表示するテーブルを生成
   const renderPartInfo = (info) => {
     if (!info) return null;
-    if (info.error) return <div className="text-red-500 text-center mt-4">{info.error}</div>;
+    if (info.error) return <div className="text-rgb(233, 255, 0) text-center mt-4">{info.error}</div>;
 
     return (
       <>
@@ -107,14 +107,14 @@ const Home = () => {
             />
             <button
               type="submit"
-              className="bg-red-600 text-white px-4 py-2 hover:bg-red-700 focus:outline-none rounded-r-lg"
+              className="bg-keiko text-gray-700 px-4 py-2 hover:bg-[rgb(210, 230, 0)] focus:outline-none rounded-r-lg"
             >
               検索
             </button>
           </form>
         </div>
         {showWarning && (
-          <div className="text-red-500 text-center mt-4">
+          <div className="text-white text-center mt-4">
             品番は半角英数字10桁で入力してください。
           </div>
         )}

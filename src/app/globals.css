@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.keiko {
+    color:rgb(233, 255, 0);
+}
+
+.bg-keiko{
+    background-color: rgb(233, 255, 0);
+}
+
+.hover\:keiko:hover {
+    color:rgb(233, 255, 0);
+}
