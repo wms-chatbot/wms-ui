@@ -30,23 +30,48 @@ const Home = () => {
   };
 
   // 部品情報を取得する非同期関数
-  const fetchPartInfo = async (partNumber: string) => {
-    try {
-      const response = await fetch(`http://localhost:5100/v1/parts/${partNumber}`);
-      const data = await response.json();
-      if (response.ok) {
-        setPartInfo(data);
-      } else {
-        throw new Error(data.message || '部品情報の取得に失敗しました。');
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setPartInfo({ error: error.message });
-      } else {
-        setPartInfo({ error: '予期せぬエラーが発生しました。' });
-      }
+  // const fetchPartInfo = async (partNumber: string) => {
+  //   try {
+  //     const response = await fetch(`http://localhost:5100/v1/parts/${partNumber}`);
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       setPartInfo(data);
+  //     } else {
+  //       throw new Error(data.message || '部品情報の取得に失敗しました。');
+  //     }
+  //   } catch (error: unknown) {
+  //     if (error instanceof Error) {
+  //       setPartInfo({ error: error.message });
+  //     } else {
+  //       setPartInfo({ error: '予期せぬエラーが発生しました。' });
+  //     }
+  //   }
+  // };
+  // 部品情報を取得する非同期関数
+const fetchPartInfo = async (partNumber: string) => {
+  try {
+    // const headers = new Headers({
+    //   'Authorization': 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTcyMjEyNzAsInVzZXJJZCI6Ijk0YzJkODVjLWRiMmMtNDlhMS1iN2ViLTZhZWViMWRhNjY5OCJ9.5SIV-07asWkyL9mxsCYIXf0chypvlK2YcXtPeJFxnVJpOSHSn4gmXPniMzPF9zdlkME6toYTzZ5GVO4aH-HNNg',
+    //   'Email': 'tk210553@tks.iput.ac.jp'
+    // });
+    const response = await fetch(`http://localhost:5100/v1/parts/${partNumber}`, {
+      method: 'GET',
+      // headers: headers
+    });
+    const data = await response.json();
+    if (response.ok) {
+      setPartInfo(data);
+    } else {
+      throw new Error(data.message || '部品情報の取得に失敗しました。');
     }
-  };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      setPartInfo({ error: error.message });
+    } else {
+      setPartInfo({ error: '予期せぬエラーが発生しました。' });
+    }
+  }
+};
 
   // 品番の検索条件をチェックし、条件に合致する場合は情報取得を実行
   const searchPartNumber = () => {
@@ -65,7 +90,7 @@ const Home = () => {
     if (!info) return null;
     if (info.error) return <div className="text-red-500 text-center mt-4">{info.error}</div>;
     return (
-      <>
+      <div className='mb-5'>
       <table className='table-auto mx-auto mt-5 text-white border border-separate border-tools-table-outline md:text-lg text-sm text-center rounded'>
           <tbody>
             <tr>
@@ -88,8 +113,7 @@ const Home = () => {
         </table>
       <LocationTable partLocations={info.PartLocations} locations={info.Locations}/>
       <OrderTable orders={info.Orders}/>
-
-      </>
+      </div>
     );
   };
   // コンポーネントのレンダリング部分
@@ -109,7 +133,7 @@ const Home = () => {
             />
             <button
               type="submit"
-              className="bg-red-600 text-white px-4 py-2 hover:bg-red-700 focus:outline-none rounded-r-lg"
+              className="shadow bg-fluorescent-color text-black px-4 py-2 hover:bg-fluorescent-color focus:outline-none rounded-r-lg"
             >
               検索
             </button>
@@ -117,7 +141,7 @@ const Home = () => {
         </div>
         {showWarning && (
           <div className="text-red-500 text-center mt-4">
-            品番は半角英数字10桁で入力してください。
+            品番は半角数字10桁で入力してください。
           </div>
         )}
         {partInfo && renderPartInfo(partInfo)}

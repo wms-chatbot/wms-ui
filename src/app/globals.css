@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-.keiko {
+.fluorescent-color {
     color:rgb(233, 255, 0);
 }
+
+.bg-fluorescent-color {
+    background-color:rgb(233, 255, 0);
+}
+
+.hover\:fluorescent-color:hover {
+    color:rgb(233, 255, 0);
+}
+
+.hover\:border-fluorescent-color:hover {
+    border-bottom-color: rgb(233, 255, 0);
+}
+
+.hover\:bg-fluorescent-color:hover {
+    background-color:rgb(210, 230, 0);
+}
+
+html, body {
+    @apply h-full;
+  }
